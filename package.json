@@ -1,0 +1,19 @@
+{
+  "name": "tarjeta.bip.scraper",
+  "version": "0.0.1",
+  "description": "Scraper de saldo de tarjeta BIP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://not/yet/"
+  },
+  "author": "Fernando L. Canizo - http://flc.muriandre.com/",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "request": "^2.53.0"
+  }
+}
