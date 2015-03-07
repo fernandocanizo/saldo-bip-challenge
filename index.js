@@ -33,5 +33,9 @@ request(requestOptions, function(error, httpResponse, body) {
 		throw error;
 	}
 
-	console.log(body);
+	var $ = cheerio.load(body);
+	var fields = $('tr td [class="verdanabold-ckc"]');
+	console.log(fields[1].children[0].data);
+	console.log(fields[5].children[0].data);
+	console.log(fields[7].children[0].data);
 });
