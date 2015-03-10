@@ -35,7 +35,6 @@ app.get('(/|/saldo)', function (req, res) {
 
 
 app.get('/saldo/:cardId', function scrapSaldo (req, res, next) {
-	console.log('scrapSaldo');
 	var dataToSend = {};
 
 	// invalid card number
