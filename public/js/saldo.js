@@ -37,6 +37,37 @@ function showSaldo(data) {
 }
 
 
+function showError(xmlHttpRequest, textStatus, message) {
+	console.error("AJAX call error: " + textStatus + "\nMessage: " + message);
+
+	if('timeout' === message) {
+		$('#statusMessage').text("Tiempo de espera agotado para la consulta. Intente más tarde.")
+			.removeClass('text-succes')
+			.addClass('text-danger');
+
+	} else { // other kind of error
+		$('#statusMessage').text("Error al consultar su tarjeta.")
+			.removeClass('text-succes')
+			.addClass('text-danger');
+	}
+
+	// no results, so no data
+	$('#cardNumber').text('');
+	$('#credit').text('');
+	$('#date').text('');
+
+	// hide spinner
+	$('#spinner').addClass('hidden');
+
+	$('#result').removeClass('hidden');
+
+	// restore UI
+	$('#cardId').attr('disabled', false)
+		.focus();
+
+}
+
+
 $(document).ready(function () {
 	$('form').on('submit', function (e) {
 		e.preventDefault();
@@ -53,8 +84,9 @@ $(document).ready(function () {
 			dataType: "json",
 			contentType: "application/json",
 			data: "",
-			timeout: 3000,
-			success: showSaldo
+			timeout: 10000,
+			success: showSaldo,
+			error: showError
 		});
 	});
 });
