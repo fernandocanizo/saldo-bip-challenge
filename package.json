@@ -10,6 +10,9 @@
     "type": "git",
     "url": "http://not/yet/"
   },
+  "scripts": {
+    "start": "node index.js"
+  },
   "author": "Fernando L. Canizo - http://flc.muriandre.com/",
   "license": "MIT",
   "dependencies": {
