@@ -1,0 +1,32 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Saldo <em>BIP!</em></a>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6">
+			<h1>Consultá el saldo de tu tarjeta <em>BIP!</em></h1>
+			<form class="form-group" action="">
+				<div class="form-group">
+					<label for="cardId">Ingresá el número de tu tarjeta <em>BIP!</em></label>
+					<input type="text" name="cardId" id="cardId" maxlength="10" class="form-control" autofocus
+					data-toggle="tooltip" data-placement="right" title="Presione ENTER para consultar">
+				</div>
+			</form>
+		</div>
+
+		<div class="col-lg-6 well hidden" id="result">
+			<p id="statusMessage"></p>
+
+			<ul>
+				<li><strong>Tarjeta: </strong><span id="cardNumber"></span></li>
+				<li><strong>Saldo: </strong><span id="credit"></span></li>
+				<li><strong>Fecha: </strong><span id="date"></span></li>
+			</ul>
+		</div>
+	</div>
+</div>
