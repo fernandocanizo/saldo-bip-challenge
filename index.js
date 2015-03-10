@@ -6,16 +6,36 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var express = require('express');
-
-
+var handlebars = require('express-handlebars');
 
 
 var app = express();
 
+////////////////////////////////////////////////////////////////////////////////
+// configuration
+////////////////////////////////////////////////////////////////////////////////
+
 app.set('port', process.env.TARJETABIT_SCRAPER_PORT || 3000);
+
+app.engine('handlebars', handlebars({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+
+////////////////////////////////////////////////////////////////////////////////
+// routes
+////////////////////////////////////////////////////////////////////////////////
+
+// static assets
+app.use(express.static(__dirname + '/public'));
+
+app.get('(/|/saldo)', function (req, res) {
+	// home page
+	res.render('home');
+});
 
 
 app.get('/saldo/:cardId', function scrapSaldo (req, res, next) {
+	console.log('scrapSaldo');
 	var dataToSend = {};
 
 	// invalid card number
@@ -24,8 +44,7 @@ app.get('/saldo/:cardId', function scrapSaldo (req, res, next) {
 	if(req.cardId.length > 10 || null === req.cardId.match(/^\d+$/)) {
 		dataToSend.status = false;
 		dataToSend.statusMessage = "Número de tarjeta inválido: '" + req.cardId + "'.";
-		res.type('application/json');
-		res.send(JSON.stringify(dataToSend));
+		res.json(dataToSend);
 		return;
 	}
 
@@ -77,20 +96,21 @@ app.get('/saldo/:cardId', function scrapSaldo (req, res, next) {
 
 			dataToSend.status = false;
 			dataToSend.statusMessage = "Número de tarjeta inválido: '" + req.cardId + "'.";
-			res.type('application/json');
-			res.send(JSON.stringify(dataToSend));
+			res.json(dataToSend);
 			return;
 		}
 
 		dataToSend.status = true;
 		dataToSend.statusMessage = "Tarjeta válida.";
 		dataToSend.result = result;
-		res.type('application/json');
-		res.send(JSON.stringify(dataToSend));
+		res.json(dataToSend);
 	});
 });
 
 
+////////////////////////////////////////////////////////////////////////////////
+// 404, 500 and other special pages
+////////////////////////////////////////////////////////////////////////////////
 app.use(function (req, res) {
 	// custom 404 page
 	res.status(404);
@@ -104,6 +124,9 @@ app.use(function (req, res) {
 });
 
 
+////////////////////////////////////////////////////////////////////////////////
+// get query parameters
+////////////////////////////////////////////////////////////////////////////////
 app.param('cardId', function (req, res, next, id) {
 	req.cardId = id;
 	next();
