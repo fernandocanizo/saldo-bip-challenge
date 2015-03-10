@@ -26,6 +26,9 @@ function showSaldo(data) {
 		$('#date').text('');
 	}
 
+	// hide spinner
+	$('#spinner').addClass('hidden');
+
 	$('#result').removeClass('hidden');
 
 	// restore UI
@@ -41,6 +44,8 @@ $(document).ready(function () {
 		// disable UI while making AJAX call
 		$('#cardId').attr('disabled', true);
 
+		// activate spinner
+		$('#spinner').removeClass('hidden');
 
 		$.ajax({
 			type: 'GET',
