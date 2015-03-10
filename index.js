@@ -15,7 +15,7 @@ var app = express();
 // configuration
 ////////////////////////////////////////////////////////////////////////////////
 
-app.set('port', process.env.TARJETABIT_SCRAPER_PORT || 3000);
+app.set('port', process.env.PORT || 60242);
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
