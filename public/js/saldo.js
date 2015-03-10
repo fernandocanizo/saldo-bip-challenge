@@ -27,12 +27,20 @@ function showSaldo(data) {
 	}
 
 	$('#result').removeClass('hidden');
+
+	// restore UI
+	$('#cardId').attr('disabled', false)
+		.focus();
 }
 
 
 $(document).ready(function () {
 	$('form').on('submit', function (e) {
 		e.preventDefault();
+
+		// disable UI while making AJAX call
+		$('#cardId').attr('disabled', true);
+
 
 		$.ajax({
 			type: 'GET',
