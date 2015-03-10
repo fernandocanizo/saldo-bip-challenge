@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://not/yet/"
+    "url": "https://github.com/fernandocanizo/saldo.bip.js.git"
   },
   "scripts": {
     "start": "node index.js"
@@ -22,5 +22,8 @@
     "express-handlebars": "^1.2.2",
     "jquery": "^2.1.3",
     "request": "^2.53.0"
+  },
+  "engines": {
+    "node": "0.12.x"
   }
 }
