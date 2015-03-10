@@ -8,4 +8,5 @@ Ministerio Secretaría General de la Presidencia.
 $ npm install
 
 $ node index.js
+
 ... and open shown url on your web browser 
